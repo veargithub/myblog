@@ -1,0 +1,96 @@
+---
+layout: default
+title: 你好，世界
+---
+<h2>{{ page.title }}</h2>
+假设你已经有了一个github账号，可以正常创建项目，且在本机上已经安装了git
+
+创建一个blog项目，比如我的叫myblog
+
+使用命令行工具创建一个git项目
+mkdir blog_github
+cd blog_github/
+git init
+
+创建一个分支
+git checkout --orphan gh-pages
+
+创建一个config文件“_config.yml”
+vim _config.yml
+输入以下内容
+baseurl: /myblog
+其中myblog要与项目名一致
+
+创建layout文件夹“_layouts”
+mkdir _layouts
+cd _layouts/
+
+新建一个html
+vim default.html
+
+输入以下内容
+<!DOCTYPE html>
+<html>
+<head>
+　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+　　　　<title>{{ page.title }}</title>
+</head>
+<body>
+
+　　　　{{ content }}
+
+</body>
+</html>
+
+去上一级目录
+cd ..
+
+创建文件夹_posts
+mkdir _posts
+
+进入_posts
+cd _posts
+
+创建文件2016-11-17-hellow-world-example.html(格式必须是yyyy-mm-dd-filename.html)
+vim 2016-11-17-hellow-world-example.html
+
+输入以下内容
+---
+layout: default
+title: 你好，世界
+---
+<h2>{{ page.title }}</h2>
+<p>我的第一篇文章</p>
+<p>{{ page.date | date_to_string }}</p>
+
+注意2个---
+
+回到上级目录
+cd ..
+
+新建index.html
+vim index.html
+
+输入以下内容
+---
+layout: default
+title: 我的Blog
+---
+<h2>{{ page.title }}</h2>
+<p>最新文章</p>
+<ul>
+　　{% for post in site.posts %}
+　　　　<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+　　{% endfor %}
+</ul>
+
+然后push代码
+
+git add -A
+git commit -m "first commit"
+git remote add origin https://github.com/yourname/myblog.git
+git push origin gh-pages
+
+然后打开浏览器输入https://yourname.github.io/myblog/
+
+<p>{{ page.date | date_to_string }}</p>
