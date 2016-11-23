@@ -41,56 +41,56 @@ vim default.html
 
 &lt;/bod&gt;<br>
 &lt;/html&gt;<br>
-
-去上一级目录
-cd ..
-
-创建文件夹_posts
-mkdir _posts
-
-进入_posts
-cd _posts
-
-创建文件2016-11-17-hellow-world-example.html(格式必须是yyyy-mm-dd-filename.html)
-vim 2016-11-17-hellow-world-example.html
-
-输入以下内容
----
-layout: default
-title: 你好，世界
----
-<h2>{{ page.title }}</h2>
-<p>我的第一篇文章</p>
-<p>{{ page.date | date_to_string }}</p>
-
-注意2个---
-
-回到上级目录
-cd ..
-
-新建index.html
-vim index.html
-
-输入以下内容
----
-layout: default
-title: 我的Blog
----
-<h2>{{ page.title }}</h2>
-<p>最新文章</p>
-<ul>
-　　{% for post in site.posts %}
-　　　　<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-　　{% endfor %}
-</ul>
-
-然后push代码
-
-git add -A
-git commit -m "first commit"
-git remote add origin https://github.com/yourname/myblog.git
-git push origin gh-pages
-
-然后打开浏览器输入https://yourname.github.io/myblog/
-
+<br>
+去上一级目录<br>
+cd ..<br>
+<br>
+创建文件夹_posts<br>
+mkdir _posts<br>
+<br>
+进入_posts<br>
+cd _posts<br>
+<br>
+创建文件2016-11-17-hellow-world-example.html(格式必须是yyyy-mm-dd-filename.html)<br>
+vim 2016-11-17-hellow-world-example.html<br>
+<br>
+输入以下内容<br>
+---<br>
+layout: default<br>
+title: 你好，世界<br>
+---<br>
+&lt;h2&gt;{{ page.title }}&lt;/h2&gt;<br>
+&lt;p&gt;我的第一篇文章&lt;/p&gt;<br>
+&lt;p&gt;{{ page.date | date_to_string }}&lt;/p&gt;<br>
+<br>
+注意2个---<br>
+<br>
+回到上级目录<br>
+cd ..<br>
+<br>
+新建index.html<br>
+vim index.html<br>
+<br>
+输入以下内容<br>
+---<br>
+layout: default<br>
+title: 我的Blog<br>
+---<br>
+&lt;h2&gt;{{ page.title }}&lt;/h2&gt;<br>
+&lt;p&gt;最新文章&lt;/p&gt;<br>
+&lt;ul&gt;<br>
+　　{% for post in site.posts %}<br>
+　　　　&lt;li&gt;{{ post.date | date_to_string }} &lt;a href="{{ site.baseurl }}{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;<br>
+　　{% endfor %}<br>
+&lt;/ul&gt;<br>
+<br>
+然后push代码<br>
+<br>
+git add -A<br>
+git commit -m "first commit"<br>
+git remote add origin https://github.com/yourname/myblog.git<br>
+git push origin gh-pages<br>
+<br>
+然后打开浏览器输入https://yourname.github.io/myblog/<br>
+<br>
 <p>{{ page.date | date_to_string }}</p>
