@@ -3,33 +3,33 @@ layout: default
 title: 你好，世界
 ---
 <h2>{{ page.title }}</h2>
-假设你已经有了一个github账号，可以正常创建项目，且在本机上已经安装了git
-
-创建一个blog项目，比如我的叫myblog
-
-使用命令行工具创建一个git项目
-mkdir blog_github
-cd blog_github/
-git init
-
-创建一个分支
-git checkout --orphan gh-pages
-
-创建一个config文件“_config.yml”
-vim _config.yml
-输入以下内容
-baseurl: /myblog
-其中myblog要与项目名一致
-
-创建layout文件夹“_layouts”
-mkdir _layouts
-cd _layouts/
-
+假设你已经有了一个github账号，可以正常创建项目，且在本机上已经安装了git<br>
+<br>
+创建一个blog项目，比如我的叫myblog<br>
+<br>
+使用命令行工具创建一个git项目<br>
+mkdir blog_github<br>
+cd blog_github/<br>
+git init<br>
+<br>
+创建一个分支<br>
+git checkout --orphan gh-pages<br>
+<br>
+创建一个config文件“_config.yml”<br>
+vim _config.yml<br>
+输入以下内容<br>
+baseurl: /myblog<br>
+其中myblog要与项目名一致<br>
+<br>
+创建layout文件夹“_layouts”<br>
+mkdir _layouts<br>
+cd _layouts/<br>
+<br>
 新建一个html
 vim default.html
-
-输入以下内容
-&lt;!DOCTYPE html&rt;<br>
+<br>
+输入以下内容<br>
+&lt;!DOCTYPE html&gt;<br>
 <html><br>
 <head><br>
 　<meta http-equiv="content-type" content="text/html; charset=utf-8" /><br>
