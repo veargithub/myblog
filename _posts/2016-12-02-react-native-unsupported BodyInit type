@@ -1,0 +1,33 @@
+最近在做项目的时候发现unsupported BodyInit type错误，研究了2周左右，总算搞定了
+一般网上搜索这个错误就是说在发送请求的时候需要加上header
+我看了下我的代码，每个请求里都会有header
+但偏偏在某几个请求（必现）中会发生上述错误，然后闪退，下面是完整的堆栈
+
+Message: unsupported BodyInit type, stack: 
+_initBody@14158:16
+Request@14237:15
+fetch@14294:22
+
+
+可以发现，问题其实是出在fetch方法中，而且fetch是个系统发送请求的方法，位于／node_modules/react-native/Library/Fetch/fetch.js中
+而这个fetch方法在早期的版本中是有bug的，具体如下
+
+
+var support = {
+-    blob: 'FileReader' in self && 'Blob' in self && (function() {
++    blob: typeof FileReader === 'function' && typeof Blob === 'function' && (function() {
+       try {
+         new Blob();
+         return true
+       } catch(e) {
+         return false
+       }
+     })(),
+-    formData: 'FormData' in self
++    formData: typeof FormData === 'function'
+   }
+   
+   
+   
+   
+而我们的项目可能是因为用的react native版本较老，所以fetch的版本也比较老，然后我手动把这两行改了，重新打包编译，ok，问题解决
