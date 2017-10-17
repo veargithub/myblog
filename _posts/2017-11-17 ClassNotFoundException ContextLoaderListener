@@ -1,0 +1,13 @@
+最近在学spring mvc
+
+用的是idea
+
+新建完项目后准备启动tomcat发现ClassNotFound异常，说是ContextLoaderListener找不到
+
+解决办法
+
+file->project structure->Artifacts
+
+在output layout面板里找到右边的available elements
+
+然后分别找到并双击Spring-4.3.12.Release和Spring mvc-4.3.12.release，使他们进入到左侧的web-inf下的lib目录下，然后重启tomcat就好了
