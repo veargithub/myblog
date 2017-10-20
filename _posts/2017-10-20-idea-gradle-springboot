@@ -1,0 +1,83 @@
+最近尝试用idea创建springboot项目,遇到很多问题，一一解决后，把过程写下来，以免以后忘记
+
+idea的版本是idea 2017.2.5
+
+file->create project
+
+在左边的菜单中选择spring initializr
+
+右边选择jdk版本（我用的是1.8）后，点击next
+
+group和arifact可以随便填,type选gradle project，然后next
+
+再随后的页面里，dependencies一个都不用选，spring boot的版本我选的是1.5.8，点击next
+
+project name随便写个，然后finish
+
+之后项目创建完成，会自动下载一些必要的dependence
+
+可惜的是，直接在项目目录下输入gradlew build && java -jar build/libs/gs-spring-boot-1.5.8.jar后会报错
+
+然后对比了官网的demo，发现问题都是出在build.gradle中
+
+在build.gradle中，需要添加
+
+jar {
+  baseName = 'gs-spring-boot'
+  version = '1.5.8'
+}
+
+然后dependence改成
+
+dependencies {
+// compile('org.springframework.boot:spring-boot-starter')
+// testCompile('org.springframework.boot:spring-boot-starter-test')
+// compile("org.springframework.boot:spring-boot-starter-actuator")
+   compile("org.springframework.boot:spring-boot-starter-web")
+   testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+以下是完整的build.gradle
+
+buildscript {
+   ext {
+      springBootVersion = '1.5.8.RELEASE'
+   }
+   repositories {
+      mavenCentral()
+   }
+   dependencies {
+      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+   }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.vart'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+   mavenCentral()
+}
+
+jar {
+   baseName = 'gs-spring-boot'
+   version =  '1.5.8'
+}
+
+dependencies {
+// compile('org.springframework.boot:spring-boot-starter')
+// testCompile('org.springframework.boot:spring-boot-starter-test')
+// compile("org.springframework.boot:spring-boot-starter-actuator")
+   compile("org.springframework.boot:spring-boot-starter-web")
+   testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+完后，再输入命令gradlew build && java -jar build/libs/gs-spring-boot-1.5.8.jar服务就起来了
+
+
