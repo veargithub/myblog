@@ -1,0 +1,12 @@
+manager->node->configure
+
+of executors 2
+
+environment variables
+
+name BUILD_ID
+value dontKillMe
+
+OR
+
+java -Dhudson.util.ProcessTree.disable=true -jar jenkins.war
