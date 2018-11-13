@@ -21,4 +21,35 @@ cd to /bin
 ./elasticsearch
 
 
+install logstash
+
+create new file names logstash-tcp.conf at /bin as:
+
+input {
+    tcp {
+        port => 4560
+        codec => json_lines
+    }
+}
+filter {
+  if "request uri:" not in [message] { drop{ } }
+}
+output{
+  	elasticsearch {
+  		hosts => ["localhost:9200"]
+  		index => "applog"
+  	}
+  	stdout { codec => rubydebug }
+}
+
+cd to /bin
+./logstash-6.4.3 -f logstash-tcp.conf
+
+install kibana
+cd to /bin
+./kibana
+
+
+
+
 
