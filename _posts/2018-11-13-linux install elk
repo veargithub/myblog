@@ -1,1 +1,24 @@
+download three tars into some folder like /mnt/ext/usr/elk
+
+tar three zip at the same folder
+
+install elasticsearch
+
+elasticsearch cannot run as root!
+
+new user
+
+groupadd es
+
+useradd -g es -m es
+
+passwd es  //set password
+
+chown -R es:es /mnt/ext/usr/elk/elasticsearch-6.4.3
+
+cd to /bin
+
+./elasticsearch
+
+
 
